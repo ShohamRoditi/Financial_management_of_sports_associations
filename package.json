@@ -1,0 +1,15 @@
+{
+  "name": "sports-associations",
+  "version": "1.0.0",
+  "description": "\u0016Service for financial management of sports associations not for profit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shoham Roditi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0"
+  }
+}
