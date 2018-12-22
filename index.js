@@ -12,7 +12,7 @@ app.all('*', (req, res, next) => {
     req.next();
 })
 
-app.get('/associations', (req,res) => {
+app.get('/getAllAssociations', (req,res) => {
     ctrl.getAllAssociations(res);
     console.log("Client handled at /getAllAthletes, GET.");
 })
@@ -21,7 +21,8 @@ app.get('/associations', (req,res) => {
 app.post('/getAssociationByYear', (req, res)=> {
     const conditions = {year:req.body.year};
     const update = {association_manager:req.body.association_manager};
- 
+     
+    // this if check if the params that sent in body == undefined || == empty 
     if(!conditions.year || !update.association_manager){
         console.log(`Inappropriate parameters - you need to send in body number and string. year: ${JSON.stringify(conditions.year)} and association_manager: ${JSON.stringify(update.association_manager)}`);
         res.send(`Inappropriate parameters - you need to send in body number and string. year:
@@ -40,7 +41,7 @@ app.post('/getAssociationByYear', (req, res)=> {
 
 })
 
-app.get('/athlethes_of_organization',(req, res) => {
+app.get('/athletes_of_organization',(req, res) => {
     const conditions = { organization_name:req.query.organization_name, number_of_athletes:parseInt(req.query.number_of_athletes)};
     
     // this if check if the params that sent in body == undefined || == empty || == 0 undifiend /null/ empty/!=0
@@ -50,18 +51,7 @@ app.get('/athlethes_of_organization',(req, res) => {
         organization_name: ${JSON.stringify(conditions.organization_name)} and number_of_athlethes: ${JSON.stringify(conditions.number_of_athletes)}`);
         return;
     }
-    // if(conditions.number_of_athletes == undefined || conditions.organization_name == undefined){
-    //     console.log("undefined value");
-    //     res.send(`undefined`);
-    //     return;
-    // }
-
-    // if(req.query.organization_name == "" || req.query.number_of_athletes == ""){
-    //     console.log("empty");
-    //     res.send(`empty`);
-    //     return;
-    // }
-
+ 
     if (conditions.number_of_athletes < 0 || conditions.organization_name < 0){
         console.log(`Inappropriate parameters - you need to send in body string and a POSITIVE number. organization_name: ${JSON.stringify(conditions.organization_name)} and number_of_athlethes: ${JSON.stringify(conditions.number_of_athletes)}`);
         res.send(`Inappropriate parameters - you need to send in body string and a POSITIVE number.
@@ -69,10 +59,8 @@ app.get('/athlethes_of_organization',(req, res) => {
         return;
     }
 
-    // console.log(conditions)
-    ctrl.athlethes_of_organization(conditions,res)
-    console.log("Client handled at /athlethes_of_organization, GET.");
-
+    ctrl.athletes_of_organization(conditions,res)
+    console.log("Client handled at /athletes_of_organization, GET.");
 })
 
 app.listen(port,
