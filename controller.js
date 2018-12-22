@@ -30,17 +30,17 @@ mongoose.connect(url, options)
 module.exports = {
     //Query number 1 in GET: show all the data - sport associations
     getAllAssociations:function(res){
-             sportassociation.find({}, (err, athletes)=>{
+             sportassociation.find({}, (err, associations)=>{
                 if(err) {
                     console.log (`query error :${err}`)
                     res.status(404).send('not found');
                 }
-                else res.send(athletes)
+                else res.send(JSON.stringify(associations))
             })
     },
 
-    // Query number 2 in POST: receives two params : year and association_manager
-    getAssociationByYear:function(conditions,update, res){
+    // Query number 2 in POST: receives two params : year(number) and association_manager(string)
+    updateAssociationByYear:function(conditions,update, res){
             const opts = {multi:true};
             sportassociation.updateOne(conditions, update, opts,
                 (err, result) => {
@@ -51,7 +51,7 @@ module.exports = {
 
                     else if(result.nModified  <= 0){
                         res.send(`Did not update: ${JSON.stringify(update)} with conditions: ${JSON.stringify(conditions)}`);
-                        console(`Did not update: ${JSON.stringify(update)} with conditions: ${JSON.stringify(conditions)}`);
+                        console.log(`Did not update: ${JSON.stringify(update)} with conditions: ${JSON.stringify(conditions)}`);
                     
                     }
                     
@@ -76,8 +76,9 @@ module.exports = {
                         console.log(`No documents found:  ${JSON.stringify(conditions)}`)
                     }
             else {
-                res.send(association);
-                console.log(`The query with params: ${JSON.stringify(conditions)} is success`)}             
+                res.send(JSON.stringify(association));
+                console.log(`The query with params: ${JSON.stringify(conditions)} is success`)
+            }             
         })
     }
   

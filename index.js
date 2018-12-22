@@ -18,11 +18,11 @@ app.get('/getAllAssociations', (req,res) => {
 })
     
 
-app.post('/getAssociationByYear', (req, res)=> {
+app.post('/updateAssociationByYear', (req, res)=> {
     const conditions = {year:req.body.year};
     const update = {association_manager:req.body.association_manager};
      
-    // this if check if the params that sent in body == undefined || == empty 
+    // this check if the params that sent in body == undefined || == empty 
     if(!conditions.year || !update.association_manager){
         console.log(`Inappropriate parameters - you need to send in body number and string. year: ${JSON.stringify(conditions.year)} and association_manager: ${JSON.stringify(update.association_manager)}`);
         res.send(`Inappropriate parameters - you need to send in body number and string. year:
@@ -36,15 +36,14 @@ app.post('/getAssociationByYear', (req, res)=> {
         year: ${JSON.stringify(conditions.year)} and association_manager: ${JSON.stringify(update.association_manager)}`);
         return;
     }
-    ctrl.getAssociationByYear(conditions,update, res);
-    console.log("Client handled at /getAssociationByYear, POST.");
-
+    ctrl.updateAssociationByYear(conditions,update, res);
+    console.log("Client handled at /updateAssociationByYear, POST.");
 })
 
 app.get('/athletes_of_organization',(req, res) => {
     const conditions = { organization_name:req.query.organization_name, number_of_athletes:parseInt(req.query.number_of_athletes)};
     
-    // this if check if the params that sent in body == undefined || == empty || == 0 undifiend /null/ empty/!=0
+    // this check if the params that sent in body == undefined || == empty || == 0 undifiend /null/ empty/!=0
     if(!conditions.number_of_athletes || !conditions.organization_name){
         console.log(`Inappropriate parameters - you need to send in body string and number. organization_name: ${JSON.stringify(conditions.organization_name)} and number_of_athlethes: ${JSON.stringify(conditions.number_of_athletes)}`);
         res.send(`Inappropriate parameters - you need to send in body string and number.
@@ -64,4 +63,6 @@ app.get('/athletes_of_organization',(req, res) => {
 })
 
 app.listen(port,
- () => console.log('Express server ready for requests on:', port))
+ () => {
+     console.log(`Express server ready for requests on: ${port}`);
+})
