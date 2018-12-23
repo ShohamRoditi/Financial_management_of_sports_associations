@@ -41,8 +41,7 @@ module.exports = {
 
     // Query number 2 in POST: receives two params : year(number) and association_manager(string)
     updateAssociationByYear:function(conditions,update, res){
-            const opts = {multi:true};
-            sportassociation.updateOne(conditions, update, opts,
+            sportassociation.updateOne(conditions, update, 
                 (err, result) => {
                     if(err){
                         console.log(`err: ${err}`);
@@ -52,12 +51,11 @@ module.exports = {
                     else if(result.nModified  <= 0){
                         res.send(`Did not update: ${JSON.stringify(update)} with conditions: ${JSON.stringify(conditions)}`);
                         console.log(`Did not update: ${JSON.stringify(update)} with conditions: ${JSON.stringify(conditions)}`);
-                    
                     }
                     
                     else{
-                        console.log(`Successfully Updated SpoartAssocistion with year: ${conditions.year} .Year is set to: ${update.association_manager}` );
-                        res.send(`Successfully Updated SpoartAssocistion with year: ${conditions.year} .Year is set to: ${update.association_manager}` );
+                        console.log(`Successfully Updated SpoartAssocistion with year: ${conditions.year} .Association manager is set to: ${update.association_manager}` );
+                        res.send(`Successfully Updated SpoartAssocistion with year: ${conditions.year} .Association manager is set to: ${update.association_manager}` );
                     }
                 })
 

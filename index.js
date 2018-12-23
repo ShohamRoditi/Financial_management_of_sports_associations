@@ -30,7 +30,7 @@ app.post('/updateAssociationByYear', (req, res)=> {
         return;
     }
 
-    if(conditions.year <= 0 || update.association_manager <= 0){
+    if(conditions.year < 0 || update.association_manager < 0){
         console.log(`Inappropriate parameters - you need to send in body a POSITIVE number and string . year: ${JSON.stringify(conditions.year)} and association_manager: ${JSON.stringify(update.association_manager)}`);
         res.send(`Inappropriate parameters - you need to send in body a POSITIVE number and string
         year: ${JSON.stringify(conditions.year)} and association_manager: ${JSON.stringify(update.association_manager)}`);
