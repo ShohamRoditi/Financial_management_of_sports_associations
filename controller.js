@@ -61,7 +61,7 @@ module.exports = {
 
     },
      
-    // Query number 3 in GET: receives two params : organization_name and number_of_athletes
+    // Query number 3 in GET: receives two params : organization_name(string) and number_of_athletes(number)
     athletes_of_organization:function(conditions, res){
         sportassociation.find(conditions, (err, association) => {
             if(err){
