@@ -62,6 +62,10 @@ app.get('/athletes_of_organization',(req, res) => {
     console.log("Client handled at /athletes_of_organization, GET.");
 })
 
+app.get('/api', (req, res) => {
+    res.redirect("https://documenter.getpostman.com/view/5643605/Rzn8RhzR");
+})
+
 app.all('*', (req, res) => {
     res.json("This is not available route");
 })
