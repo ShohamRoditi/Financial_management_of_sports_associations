@@ -55,6 +55,14 @@ module.exports = {
             return;
         }
 
+          //validation for if the year is number and not a string 
+          if(isNaN(conditions)){
+            console.log(`You send in params in field year String: ${JSON.stringify(conditions)} and not a number - please try again`);
+            res.send(`You send in params in field year String: ${JSON.stringify(conditions)} and not a number - please try again`);
+            return;
+
+        }
+
         const result = await sportassociation.updateOne(conditions, update);
         
         if(!result){
@@ -115,6 +123,5 @@ module.exports = {
             console.log(`The query with params: ${JSON.stringify(conditions)} is success`)
         }             
     }
-  
     
 }
