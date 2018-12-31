@@ -69,7 +69,7 @@ module.exports = {
         }
         
         else if(result.nModified <= 0){
-            res.send(`{"Failure": "No Update", "association_manager": ${JSON.stringify(update.association_manager)}, "year": ${JSON.stringify(conditions.year)}, "reason": "The year is not change or did not found "}`);
+            res.send(`{"Failure": "No Update", "association_manager": ${JSON.stringify(update.association_manager)}, "year": ${JSON.stringify(conditions.year)}, "reason": "The association_manager is not change or the year did not found "}`);
             console.log(`Did not update: ${JSON.stringify(update)} with conditions: ${JSON.stringify(conditions)}`);
         }
                     
