@@ -13,7 +13,7 @@ app.all('*', (req, res, next) => {
 })
 
 app.get('/getAllAssociations', (req,res) => {
-    ctrl.getAllAssociations(res);
+    ctrl.getAllAssociations(req, res);
     console.log("Client handled at /getAllAssociations, GET.");
 })
     
